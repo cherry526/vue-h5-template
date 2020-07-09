@@ -4,11 +4,16 @@
  * @Autor: cherry
  * @Date: 2020-06-04 14:15:58
  * @LastEditors: cherry
- * @LastEditTime: 2020-07-02 16:05:12
+ * @LastEditTime: 2020-07-07 15:36:32
 --> 
 <template>
   <div>
     loading
+    <div class="box">哈哈哈哈哈</div>
+    <span @click="theme('iview')">默认</span>
+    <span @click="theme('light')">浅色</span>
+    <span @click="theme('dark')">深色</span>
+    <footer-btn>底部按钮</footer-btn>
   </div>
 </template>
 <script>
@@ -22,6 +27,10 @@
       }
     },
     methods: {
+      theme(type) {
+        // this.$store.commit('upDate', {themeType: type});
+        window.document.documentElement.setAttribute( "data-theme", type );
+      },
       // 场景：进入项目自动授权
       initPage() {
         var sessionToken = this.$save.get('session', 'token')
@@ -52,10 +61,17 @@
       }
     },
     created() {
-      this.initPage()
+      // this.initPage()
     }
   }
 </script>
 <style scoped lang='scss'>
-
+  .box {
+    width: 100%;
+    height: 300px;
+    font-size: 18px;
+    @include font_color("font_color1");
+    @include background_color("background_color1");
+    @include border_color("border_color1");
+  }
 </style>

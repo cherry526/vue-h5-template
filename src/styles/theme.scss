@@ -1,1 +1,38 @@
-$theme-color: #FF9900;
+$theme-color1: #FF9900;
+$theme-color2: #397DC0;
+$theme-color3: #B60024;
+
+$themes: (
+
+    light: (
+        //字体
+        font_color1: #414141,
+        font_color2: white,
+        
+        //背景
+        background_color1: $theme-color1,
+        background_color2: #f0f2f5,
+        background_color3: red,
+        background_color4: #2674e7,
+        
+        //边框
+        border_color1: #3d414a,
+    
+    ),
+    
+    dark: (
+        //字体
+        font_color1: #a7a7a7,
+        font_color2: white,
+        
+        //背景
+        background_color1: $theme-color2,
+        background_color2: #283142,
+        background_color3: #1e6ceb,
+        background_color4: #323e4e,
+    
+        //边框
+        border_color1: #3d414a,
+    
+    )
+)
