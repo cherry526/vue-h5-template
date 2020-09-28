@@ -3,12 +3,12 @@
  * @Version: 1.0
  * @Autor: cherry
  * @Date: 2020-07-02 14:25:21
- * @LastEditors: cherry
- * @LastEditTime: 2020-07-02 16:21:05
+ * @LastEditors: yesong
+ * @LastEditTime: 2020-07-31 11:09:57
  */ 
 
  // 存储数据变量名前缀 
-const PREFIX = 'cherry'
+const PREFIX = 'doyd'
 const WAY = {
   'local': 'localStorage',
   'session': 'sessionStorage'

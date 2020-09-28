@@ -4,13 +4,13 @@
  * @Autor: cherry
  * @Date: 2020-06-17 14:45:06
  * @LastEditors: cherry
- * @LastEditTime: 2020-06-23 16:51:13
+ * @LastEditTime: 2020-09-28 17:01:29
  */ 
 import Vue from "vue"
 import common from './common'
 
 const filters = {
-  ...common
+  ...common,
 }
 
 export default (Vue) => {

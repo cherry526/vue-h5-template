@@ -1,10 +1,19 @@
+<!--
+ * @Description: 
+ * @Version: 1.0
+ * @Autor: cherry
+ * @Date: 2020-07-09 17:13:03
+ * @LastEditors: yesong
+ * @LastEditTime: 2020-08-07 17:03:22
+--> 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <meta  name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+
+    <!-- <link rel="icon" href="<%= BASE_URL %>favicon.ico"> -->
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
@@ -12,6 +21,16 @@
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
-    <!-- built files will be auto injected -->
+    <script charset="utf-8" src="https://map.qq.com/api/js?v=2.exp&key=SXPBZ-YPRWU-Y3HV2-B6G4R-4T6W2-7FBS5"></script>
+    <script src="https://3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script>
+    <script src="//g.alicdn.com/fdilab/lib3rd/viewport-units-buggyfill/0.6.2/??viewport-units-buggyfill.hacks.min.js,viewport-units-buggyfill.min.js"></script>
+    <!-- //在index.html中调用viewport-units-buggyfill -->
+    <script> 
+      window.onload = function () { 
+        window.viewportUnitsBuggyfill.init({ 
+          hacks: window.viewportUnitsBuggyfillHacks 
+        });
+      } 
+    </script>
   </body>
 </html>

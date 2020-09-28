@@ -4,7 +4,7 @@
  * @Autor: cherry
  * @Date: 2020-06-12 14:41:15
  * @LastEditors: cherry
- * @LastEditTime: 2020-06-23 16:52:13
+ * @LastEditTime: 2020-08-08 11:58:46
  */ 
 import Vue from 'vue'
 const requireComponent = require.context(
@@ -17,7 +17,14 @@ export default (Vue) => {
 	requireComponent.keys().forEach((fileName) => {
 		// 获取组件
 		const componentConfig = requireComponent(fileName)
+	  // 处理文件名称
+		let componentName;
+		if (!componentConfig.default.name) {
+			componentName = componentConfig.default.__file.replace(/\/$(.*)\.\w+$/, '$1')
+		} else {
+			componentName = componentConfig.default.name
+		}
 		// 全局注册组件（componentConfig.default.name：组件的名称，componentConfig.default：组件本身）
-		Vue.component(componentConfig.default.name, componentConfig.default || componentConfig) 
+		Vue.component(componentName, componentConfig.default || componentConfig) 
 	})
 }

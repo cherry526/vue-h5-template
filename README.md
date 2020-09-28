@@ -4,7 +4,7 @@
  * @Autor: cherry
  * @Date: 2020-06-12 16:22:07
  * @LastEditors: cherry
- * @LastEditTime: 2020-06-29 09:18:58
+ * @LastEditTime: 2020-07-22 10:29:35
 --> 
  基于 vue-cli4.0 + webpack 4 + vant ui + sass+ rem 适配方案+axios 封装，构建手机端模板脚手架
 
@@ -176,7 +176,7 @@ requireComponent.keys().forEach((fileName) => {
 Vue.prototype.$api = api
    
 // js调用
-this.$api.home.login({})
+this.$api
 
 //关键代码
 import asyncImportModules from '@utils/importModules'
@@ -206,8 +206,6 @@ export default api
 ```
 ![](http://192.168.5.51:8081/server/../Public/Uploads/2020-06-23/5ef1a8a080091.png)
 
-#### 10.Lockr管理存储
-[lockr插件让本地存储localstorage更加简单的api](https://www.npmjs.com/package/lockr "lockr插件让本地存储localstorage更加简单的api")
 
 #### 11.Moment日期处理类库
 [格式化日期更简单](http://momentjs.cn/ "格式化日期")

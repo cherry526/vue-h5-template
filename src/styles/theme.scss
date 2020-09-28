@@ -3,6 +3,10 @@ $theme-color2: #397DC0;
 $theme-color3: #B60024;
 
 $themes: (
+    default: (
+      flag_color1: #CD7B00,
+      flag_color2:  #8C4B00
+    ),
 
     light: (
         //字体

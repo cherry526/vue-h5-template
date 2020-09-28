@@ -1,0 +1,88 @@
+/* 增加1.5倍触控热区 父元素需要添加position: relative;*/
+.add_touch::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: scale(1.5);
+}
+
+// 活动圆角顶部
+.act-container {
+  position: relative;
+  padding-bottom: 100px;
+  background-color: #F6F6F6;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  top:-20px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  box-sizing: border-box;
+  
+}
+
+// 活动面板
+.active-panel {
+  padding: 30px 24px;
+  box-sizing: border-box;
+  background-color: #fff;
+  color: #1A1919;
+  margin-top: 18px;
+}
+.active-panel-title{
+  margin-bottom: 24px;
+}
+.active-panel-detail {
+  font-size: 26px;
+  line-height: 36px;
+}
+
+.active-footer {
+  position: fixed;
+  width: 100%;
+  height: 100px;
+  bottom: 0;
+  z-index: 12;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// 会员标签
+.vip-tag{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 40px;
+  line-height: 40px;
+  font-size: 22px;
+  color: #994514;
+  width: 112px;
+  text-align: center;
+  border-bottom-right-radius: 14px;
+  background-image: linear-gradient(90deg, #E89751 0%, #F4BD8B 100%);
+}
+.f-gift-vip-icon{
+  width: 124px !important;
+  height: 42px !important;
+  top: 0;
+  left: 0;
+}
+.update-vip-label{
+  width: 47px;
+  height: 24px;
+  margin-left: 8px;
+}
+.mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.50);
+  z-index: 12;
+}

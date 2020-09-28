@@ -4,66 +4,132 @@
  * @Autor: cherry
  * @Date: 2020-06-04 14:15:58
  * @LastEditors: cherry
- * @LastEditTime: 2020-06-28 10:46:34
+ * @LastEditTime: 2020-08-11 16:34:55
 --> 
 <template>
   <div id="app">
-    <keep-alive v-if="$route.meta.keepAlive">
-      <router-view v-wechat-title="$route.meta.title"> </router-view>  
-    </keep-alive>
-    <router-view v-wechat-title="$route.meta.title" v-else> </router-view>
+    <!-- <transition :name="transitionName">  -->
+      <keep-alive :include="cachedViews">
+        <router-view class="child-view" v-wechat-title="$route.meta.title"> </router-view>  
+      </keep-alive>
+    <!-- </transition> -->
+    <!-- 返回首页 -->
+    <back-icon></back-icon>
   </div>
 </template>
 <script>
-// import getWXSign from "@/utils/wx"
-const defaultSettings = require('@/config/index.js')
-const { AUTH_API } = defaultSettings
+import getWXSign from "@/utils/wx"
+import { mapGetters, mapActions, mapMutations } from "vuex";
+const { AUTH_API }= require('@/config/index.js')
+import utils from '@utils/utils'
+
 export default {
   name: "App",
   data() {
     return {
+      transitionName: 'transition-page'
+    }
+  },
+  //监听路由的路径，可以通过不同的路径去选择不同的切换效果  
+  watch: {  
+    '$route' (to, from) {  
+      if(to.path == '/'){  
+        this.transitionName = '';  
+      }else{  
+        this.transitionName = 'transition-page';  
+      }  
+      const { name } = this.$route
+      if (name) {
+        this.ADD_CACHED_VIEWS(this.$route)
+      }
+    }
+  },
+  computed: {
+    ...mapGetters(['cachedViews'])
+  },
+
+  methods: {
+    ...mapActions('index', [
+      // 获取当前位置经纬度信息
+      'setLocationCityInfo'
+    ]),
+    ...mapMutations('index', [
+      'SET_WXUSER',
+      'SET_VIPCARDINFO',
+      'ADD_CACHED_VIEWS'
+    ]),
+    // 初始化微信
+    getWxInit() {
+      // 处理路由token
+      let lasturl
+      if(window.$mode === 'hash') {
+        lasturl = utils.delData()
+      } else {
+        lasturl = utils.deleteUrlParams()
+      }
+      history.replaceState(null,null,lasturl)
+      console.log(lasturl, '==============lasturl', history)
+      setTimeout(() => {
+        getWXSign().then(wx => {
+          console.log(wx, '-----------wx')
+          window.$wx = wx
+        }).catch(res => {
+          console.log(res, '---------getWXSignError')
+        })
+      }, 500);
+    },
+    onCodeHandle() {
+      $eventBus.$on('handleCode', (res) => {
+        if(res === 9) { // 未授权
+          try {
+            this.$router.replace({
+              name: 'entrance'
+            })
+          } catch (error) {
+            console.err(error)
+          }
+        }
+      })
+    },
+    // 处理路由携带token直接跳转
+    tokenLink() {
+      let queryData
+      if(window.$mode === 'hash') {
+        queryData = utils.getData()
+      } else {
+        queryData = utils.formatUrlParams()
+      }
+      // console.log(queryData, '==000=====0000', window.location.href)
+      if(queryData && queryData.token && queryData.entrance === 'once') {
+        this.getWxInit()
+        this.$save.set('session', 'token', queryData.token)
+        this.$api.appInit().then(res => {
+          // 处理入口逻辑
+          if(res.state) {
+            let {vipCardInfo = {}, wxUser, target, param} = res.info
+            this.SET_WXUSER(wxUser)
+            this.SET_VIPCARDINFO(vipCardInfo)
+            // 储存会员卡信息
+            if (vipCardInfo.onceVip && !vipCardInfo.vipUser) {
+              vipCardInfo.isExpiration = true
+            }
+          }        
+        })
+      }
     }
   },
   created() {
-    console.log(this, 'router')
-    // getWXSign().then(wx => {
-    //   window.$wx = wx
-    // })
-    // this.$api.home.login({})
   },
-  methods: {
-    // 场景：进入项目自动授权
-    initPage() {
-      var session = window.sessionStorage.getItem('token')
-      var queryData = utils.getData(window.location)
-      // 首次授权
-      if (!session) {
-        console.log(JSON.stringify(queryData) + '====================='+ window.location.href)
-        // alert(JSON.stringify(queryData)+'====================='+window.location)
-        // 公众号入口 核销入口 保存参数 ！！！！！！
-        // if (window.location.href.indexOf("public") > -1 || window.location.href.indexOf("qrcode") > -1 || ~window.location.href.indexOf("cancel")) {
-        //   this.$save.session('public', queryData)
-        // }
-        // 获取授权
-        if (window.location.href.indexOf("token") == -1) {
-          this.$save.session('publicUrl', window.location.href)
-          window.location.href = AUTH_API
-          console.log(AUTH_API,defaultSettings, '------defaultSettings' )
-        } else {
-          // console.log(token+'--------------'+JSON.stringify(publicData)+'参数',window.location.href)
-          // let lasturl = this.delData()
-          // history.replaceState(null,null,lasturl)
-          this.$save.session('publicUrl', window.location.href)
-          let token = queryData["token"]
-          if (token) {
-            window.sessionStorage.setItem('token', token)
-            console.log(window.sessionStorage.getItem('token'))
-          }
-        }
-      } else {
-
-      }
+  mounted() {
+    this.onCodeHandle()
+    console.log('app------mounted', this.$route, window.location,  '---------现在的路由')
+    if(!this.$save.get('session', 'token')) {
+      this.setLocationCityInfo()
+      // this.tokenLink()
     }
+  },
+  destroyed() {
+
   }
 }
 </script>
@@ -71,12 +137,29 @@ export default {
 <style lang="scss">
 @import './styles/index.scss';
 #app {
-    height: 100%;
-    width: 100%;
-    overflow: auto;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
+.child-view {  
+  position: absolute;  
+  left: 0;  
+  top: 0;  
+  width: 100%;  
+  height: 100%;  
+  transition: all .5s cubic-bezier(.55,0,.1,1);  
+}  
+.transition-page-enter {  
+  opacity: 0;  
+  -webkit-transform: translate(30px, 0);  
+  transform: translate(30px, 0);  
+}  
+.transition-page-leave-active {  
+  opacity: 0;  
+  -webkit-transform: translate(-30px, 0);  
+  transform: translate(-30px, 0);  
+}  
 
 </style>

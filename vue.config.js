@@ -3,8 +3,7 @@
  * @Version: 1.0
  * @Autor: cherry
  * @Date: 2020-06-04 14:44:03
- * @LastEditors: cherry
- * @LastEditTime: 2020-07-02 14:16:54
+ * @LastEditTime: 2020-08-20 10:59:46
  */ 
 // 开启Gzip压缩
 const CompressionPlugin = require('compression-webpack-plugin')
@@ -13,18 +12,20 @@ const TerserPlugin = require("terser-webpack-plugin");
 // 打包分析
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
 const path = require('path')
 const resolve = dir => path.join(__dirname, dir)
-const defaultSettings = require('./src/config/index.js')
-const IS_PROD = ['sandbox', 'production' ].includes(process.env.NODE_ENV)
-// console.log(process.env.NODE_ENV, 'defaultSettings', defaultSettings.VUE_APP_OSS_SRC, IS_PROD)
+const IS_PROD = process.env.NODE_ENV !== 'development'
+const webpack = require('webpack')
 
 module.exports = {
-  publicPath: './',
+  publicPath: process.env.NODE_ENV === 'development' ? '/' : '/vip_inline_h5',
+  // publicPath: './',
   lintOnSave: false, // 关闭eslint
-  outputDir:"dist",
-  assetsDir:"assets",
-  indexPath:"index.html",
+  assetsDir: 'static',
+  outputDir: "dist",
+  indexPath: "index.html",
   runtimeCompiler: true, //包含运行时编译器的 Vue 构建版本 
   productionSourceMap: false,
   devServer: {
@@ -34,7 +35,7 @@ module.exports = {
     disableHostCheck: true,
     proxy: {
       '/api': {
-        target: 'http://api.jk8.kdwaimai.com/box-jkb-channel-api',
+        target: 'http://36d.kdwaimai.com/',
         ws: true,
         changeOrigin: true,
         pathRewrite: {
@@ -44,6 +45,11 @@ module.exports = {
     }
   },
   chainWebpack: config => {
+    // 优化moment 去掉国际化内容
+    config
+    .plugin('ignore')
+    // 忽略/moment/locale下的所有文件
+    .use(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)) 
     // 修复热更新失效
     config.resolve.symlinks(true)
     // 移除 preload 插件(针对生产环境首屏请求数进行优化)   preload 插件的用途：https://cli.vuejs.org/zh/guide/html-and-static-assets.html#preload
@@ -111,7 +117,8 @@ module.exports = {
           },
           components: {
             name: "chunk-components",
-            test: resolve("src/components"), // 可自定义拓展你的规则
+            // test: resolve("src/components"), // 可自定义拓展你的规则
+            test: /[\\/]src[\\/]components[\\/]/,
             minChunks: 2, // 最小共用次数
             priority: 5,
             reuseExistingChunk: true
@@ -146,30 +153,37 @@ module.exports = {
         // 向全局sass样式传入共享的全局变量, $src可以配置图片cdn前缀
         prependData: `
           @import "@styles/index.scss";
-          $cdn: "${defaultSettings.VUE_APP_OSS_SRC}";
         `
       },
-      postcss: {
-        plugins: [
-          // 把px单位换算成rem单位
-          require("postcss-pxtorem")({
-            rootValue: 37.5, // 换算的基数(设计图750的根字体为32)
-            unitPrecision: 5, // 最小精度，小数点位数
-            // selectorBlackList: [".van"],// 要忽略的选择器并保留为px。
-            propList: ["*"], //可以从px更改为rem的属性。
-            minPixelValue: 2 // 设置要替换的最小像素值。
-          })
-        ]
-      }
+      // postcss: {
+      //   plugins: [
+      //     // 把px单位换算成rem单位
+      //     require("postcss-pxtorem")({
+      //       rootValue: 75, // 换算的基数(设计图750的根字体为32)
+      //       unitPrecision: 5, // 最小精度，小数点位数
+      //       selectorBlackList: [".van"],// 要忽略的选择器并保留为px。
+      //       propList: ["*"], //可以从px更改为rem的属性。
+      //       minPixelValue: 2 // 设置要替换的最小像素值。
+      //     })
+      //   ]
+      // }
     }
   },
   configureWebpack: config => {
     // // cdn资源引入
-    //   externals: {
-    //     'vue':'Vue',
-    //     'vuex': 'Vuex',
-    //     'vue-router':'VueRouter'
-    //   }
+      // externals: {
+      //   'vue':'Vue',
+      //   'vuex': 'Vuex',
+      //   'vue-router':'VueRouter'
+      // }
+      config.performance = {
+        hints: 'warning', 
+        maxAssetSize: 300000, // 整数类型（以字节为单位）
+        maxEntrypointSize: 500000, // 整数类型（以字节为单位）
+        assetFilter: function(assetFilename) {
+          return assetFilename.endsWith('.css') || assetFilename.endsWith('.js');
+        }
+      }
    // 生产环境相关配置
    if (IS_PROD) {
      console.log('压缩配置',process.env.NODE_ENV)
@@ -188,6 +202,20 @@ module.exports = {
         deleteOriginalAssets: false // 删除原文件
       })
     )
+    config.plugins.push(
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          compress: {
+            drop_debugger: true,
+            drop_console: true,  //生产环境自动删除console
+          },
+          warnings: false,
+        },
+        sourceMap: false,
+        parallel: true,//使用多进程并行运行来提高构建速度。默认并发运行数：os.cpus().length - 1。
+        cache: true
+      })
+    );
     // config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true
     config.optimization.minimizer = [
       new TerserPlugin({

@@ -9,24 +9,376 @@
   width: 100%;
   height: 100%;
 }
-// 定位
-.rela{
-  position: relative;
+.ovh {
+  overflow: hidden;
+}
+.disl {
+  display: inline;
+}
+.disb {
+  display: inline-block;
 }
 
+// 定位
+.por {
+  position: relative;
+}
+.poa {
+  position: absolute;
+}
+.pof {
+  position: fixed;
+}
+.pos {
+  position: sticky;
+}
+
+// 颜色
 .white{
   color: white;
 }
 .black{
   color: black;
 }
-.w_bgc{
-  background-color: white;
+.c23{
+  color: #232532;
 }
-input::placeholder{
-  color: #B2B2B2;
+.c00{
+  color: #000000;
+}
+.cff{
+  color: #ffffff;
+}
+.c8C{
+  color: #8C8E99;
+}
+.c11{
+  color: #11131A;
+}
+.c9E {
+  color: #9E9D9B;
+}
+.cD9{
+  color: #D90634;
+}
+.c3C{
+  color: #3C3F4D;
+}
+.cC2{
+  color: #C2C3C5;
+}
+.cEE{
+  color: #EEDCA2;
+}
+.c10{
+  color: #10131A;
+}
+.c99{
+  color: #994514;
+}
+.c999{
+  color: #999999;
+}
+.cC4{
+  color: #C47E50;
+}
+.cC43{
+  color: #C43509;
+}
+.cC5 {
+  color: #C5855C;
+}
+.c0D{
+  color: #0D0D0D;
+}
+.c6D{
+  color: #6D1F00;
+}
+.cAE{
+  color: #AE5E2A;
+}
+.cFa {
+  color: #FADAA3;
+}
+.c57{
+  color: #57270B;
+}
+.cFC{
+  color: #FCD9B3;
+}
+.c4C {
+ color:#4C4C4C;
+}
+.cB5 {
+  color: #B5B5B5;
+}
+.c5C {
+  color: #C5C9DA;
+}
+.cD1{
+  color: #D1823B;
+}
+.c5D{
+  color: #5D5D5D;
+}
+.cFD{
+  color: #FFDDA4;
+}
+.c76{
+  color: #764811;
+}
+.c8C7 {
+ color: #C87714;
+}
+.c97 {
+  color: #974915;
+}
+.cAC{
+  color: #AC6737;
+}
+.c61{
+  color: #611703;
+}
+.cFF{
+  color: #FFE39C;
+}
+.cFE{
+  color: #FEE08A;
+}
+.c007 {
+ color: #007EEE;
+}
+.c6E {
+  color:  #6E707B;
+}
+.c08 {
+  color: #080808;
+}
+.cf51 {
+  color: #F51307;
+}
+.c1A {
+  color: #1A1919;
+}
+.c66 {
+  color: #666564;
+}
+.c8C4 {
+  color: #8C4B00;
+}
+.cF51 {
+  color: #F51307;
+}
+.cCD {
+  color: #CD7B00;
+}
+.cFFD {
+  color: #FFD683;
+}
+.cC7 {
+  color: #C7C5C3;
 }
 
+// 图片显示
+.img-cov {
+  object-fit: cover;
+}
+.img-ct {
+  object-fit: contain;
+}
+// 间距
+.pl30{
+  padding-left: 30px;
+}
+.pl22{
+  padding-left: 22px
+}
+.pr30{
+  padding-right: 30px;
+}
+.pd30 {
+  padding: 0 30px;
+}
+.plr30{
+  padding:0 30px 0;
+}
+.pb100{
+  padding-bottom: 100px;
+}
+
+.mt20{
+  margin-top: 20px;
+}
+.mr20{
+  margin-right: 20px;
+}
+.mt30{
+  margin-top: 30px;
+}
+.mb30 {
+  margin-bottom: 30px;
+}
+.mt18{
+  margin-top: 18px;
+}
+.mt16{
+  margin-top: 16px;
+}
+.mt14{
+  margin-top: 14px;
+}
+.mt12{
+  margin-top: 12px;
+}
+.ml30{
+  margin-left: 30px;
+}
+.mr30{
+  margin-right: 30px;
+}
+
+// 文本
+.tac {
+  text-align: center;
+}
+.tal {
+  text-align: left;
+}
+.tar {
+  text-align: right;
+}
+.tdt {
+  text-decoration: line-through;
+}
+.text-ul {
+  text-decoration: underline;
+}
+.text-one {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.text-two {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal !important;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+// 字体大小
+.bold {
+  font-weight: bold;
+}
+.ft12 {
+  font-size: 12px;
+}
+.ft14 {
+  font-size: 14px;
+}
+.ft16 {
+  font-size: 16px;
+}
+.ft18 {
+  font-size: 18px;
+}
+.ft20 {
+  font-size: 20px;
+}
+.ft22 {
+  font-size: 22px;
+}
+.ft23 {
+  font-size: 23px;
+}
+.ft24 {
+  font-size: 24px;
+}
+.ft26 {
+  font-size: 26px;
+}
+.ft28 {
+  font-size: 28px;
+}
+.ft30 {
+  font-size: 30px;
+}
+.ft32 {
+  font-size: 32px;
+}
+.ft34 {
+  font-size: 34px;
+}
+.ft36 {
+  font-size: 36px;
+}
+.ft38 {
+  font-size: 38px;
+}
+.ft40 {
+  font-size: 40px;
+}
+.ft42 {
+  font-size: 42px;
+}
+.ft44 {
+  font-size: 44px;
+}
+.ft46 {
+  font-size: 46px;
+}
+.ft48 {
+  font-size: 48px;
+}
+.ft50 {
+  font-size: 50px;
+}
+.ft52 {
+  font-size: 52px;
+}
+.ft54 {
+  font-size: 54px;
+}
+.ft56 {
+  font-size: 56px;
+}
+.ft58 {
+  font-size: 58px;
+}
+.ft68 {
+  font-size: 68px;
+}
+.ft72 {
+  font-size: 72px;
+}
+
+// 字体行高
+.lh1 {
+  line-height: 1;
+}
+.lh40{
+  line-height: 40px;
+}
+.lh44{
+  line-height: 40px;
+}
+.lh46 {
+  line-height: 46px;
+}
+.ft60 {
+  font-size: 60px;
+}
+
+.ft62 {
+  font-size: 62px;
+}
+.ft68 {
+  font-size: 68px;
+}
+
+// 浮动
 .fl {
   float: left;
 }
@@ -53,156 +405,278 @@ input::placeholder{
   display: flex;
 }
 
-.flex_1 {
+.flex-1 {
   flex: 1;
 }
 
-.wrap {
-  flex-wrap: wrap;
-}
-
-.flex_c {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.flex_s {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.flex_c_b {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.flex_c_e {
-  display: flex;
-  align-items: flex-end;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.flex_a {
+.flex-a {
   display: flex;
   justify-content: space-around;
 }
 
-.flex_ss {
-  display: flex;
-  justify-content: flex-start;
-}
-.flex_c_n {
-  display: flex;
-  align-items: center;
-}
-.flex_a_b {
+.flex-b {
   display: flex;
   justify-content: space-between;
 }
 
-.flex_column {
+.flex-b-e {
+  display: flex;
+  align-items: flex-end;
+}
+
+.flex-c {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-v {
+  display: flex;
+  align-items: center;
+}
+
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
+// .flex-aend {
+//   display: flex;
+//   align-items: flex-end;
+// }
+
+.flex-c-b {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-b-end {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.flex-cc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-sc {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.flex-ec {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.flex-c-end {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+
+
+.flex-end-end {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.flex-start {
+  display: flex;
+  align-items: flex-start;
+}
+
+.flex-base{
+  display: flex;
+  align-items: baseline;
+}
+
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-co-c {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.flex-co-e {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.flex-col-ac {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flex-col-c {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.flex_co_s {
+.flex-co-cs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.flex-co-end {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.flex-co-b {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-co-s {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
 }
 
-.flex_co_b {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.flex_co_bet {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.flex_co_c {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
-.flex_co_ss {
+.flex-co-ss {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
 }
-.flex_co_fs {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-.align_r {
-  align-self: flex-end;
-}
-
-.flex_end {
-  display: flex;
-  justify-content: flex-end;
-}
-
-// 文字字体大小
-.font_b{
-  font-weight: bold;
-}
-
-.font_12{
-  font-size: .16rem;
-}
-.font_14{
-  font-size: .19rem;
-}
-.font_16{
-  font-size: .21rem;
-}
-.font_24{
-  font-size: .32rem;
-}
-.font_30{
-  font-size: .4rem;
-}
-// 文本
-.text_c{
-  text-align: center;
-}
-.text_l{
-  text-align: left;
-}
-.title{
-  font-size: .48rem;
-  font-weight: 700;
-  text-align: center;
-}
-/* 文本*/
-
-.text_one {
-  overflow: hidden;
+.t-elps {
   white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.text_two {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-}
-.text_wrap{
-  word-wrap:break-word;
-}
+
+// .flex {
+//   display: flex;
+// }
+
+// .flex_1 {
+//   flex: 1;
+// }
+
+// .wrap {
+//   flex-wrap: wrap;
+// }
+
+// .flex_c {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// }
+
+// .flex_s {
+//   display: flex;
+//   align-items: center;
+//   justify-content: flex-start;
+// }
+
+// .flex_c_b {
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+// }
+
+// .flex_c_e {
+//   display: flex;
+//   align-items: flex-end;
+//   flex-direction: column;
+//   justify-content: center;
+// }
+
+// .flex_a {
+//   display: flex;
+//   justify-content: space-around;
+// }
+
+// .flex_ss {
+//   display: flex;
+//   justify-content: flex-start;
+// }
+// .flex_c_n {
+//   display: flex;
+//   align-items: center;
+// }
+// .flex_a_b {
+//   display: flex;
+//   justify-content: space-between;
+// }
+
+// .flex_column {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+// }
+
+// .flex_co_s {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: flex-start;
+//   align-items: center;
+// }
+
+// .flex_co_b {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+// }
+
+// .flex_co_bet {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+// }
+
+// .flex_co_c {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+//   align-items: center;
+// }
+// .flex_co_ss {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+//   align-items: flex-start;
+// }
+// .flex_co_fs {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: flex-start;
+// }
+// .align_r {
+//   align-self: flex-end;
+// }
+
+// .flex_end {
+//   display: flex;
+//   justify-content: flex-end;
+// }
