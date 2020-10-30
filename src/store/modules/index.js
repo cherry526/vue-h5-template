@@ -34,23 +34,11 @@ const state = {
     refreshVipCardInfo: false,
     street: "创业一路"
   },
-  // 会员信息
-  vipCardInfo: $save.get('session', 'vipCardInfo') || {},
-  // 是否可以领取卡包
-  getFreeBag: $save.get('session', 'getFreeBag') || null,
-  // 后台模块配置
-  moduleList: $save.get('session', 'moduleList') || null,
   // 更新页面
   updatePage: $save.get('session', 'updateStore') || null,
   // 更新页面管理
   updateStore: {
-    'home': false,
-    'gift': false,
-    'center': false,
-    'search': false,
-    'actDetail': false,
-    'flag': false,
-    'orderList': false
+    'home': false
   },
   // 缓存页面 tab页默认缓存 
   cachedViews: ['tabLayout']
@@ -84,23 +72,9 @@ const mutations = {
     state.locationInfo = data
     $save.set('session', 'locationInfo', data) 
   },
-  SET_VIPCARDINFO(state, data) {
-    state.vipCardInfo = data
-    state.getFreeBag = data.getFreeBag
-    $save.set('session', 'vipCardInfo', data) 
-    $save.set('session', 'getFreeBag', data.getFreeBag) 
-  },
-  SET_GETFREEBAG(state, data) {
-    state.getFreeBag = data
-    $save.set('session', 'getFreeBag', data) 
-  },
   SET_ONE_LOCATIONCITY(state, data) {
     state.oneLocationCity = data
     $save.set('session', 'oneLocationCity', data) 
-  },
-  SET_MOUDULELIST(state, data) {
-    state.moduleList = data
-    $save.set('session', 'moduleList', data) 
   },
   SET_UPDATEPAGE(state, data) {
     let updateStore = { ...state.updateStore, ...data }
@@ -164,25 +138,6 @@ const actions = {
       geolocation.getLocation(showPosition, showErr);//或者用getLocation精确度比较高
     }
     getLocation()
-  },
-  setVipCardInfo({commit, state}, data) {
-    commit('SET_VIPCARDINFO', data)
-  },
-  setGetFreeBag({commit, state}, data) {
-    commit('SET_GETFREEBAG', data)
-  },
-  setModuleList({commit, state}, data) {
-    return new Promise((resolve,reject) => {
-      $api.module_show().then(res => {
-        if(res.state) {
-          commit('SET_MOUDULELIST', res.info.moduleList || null)
-          resolve(res.info.moduleList)
-        } else {
-          reject([])
-        }
-      })
-    })
-
   },
 }
 export default {

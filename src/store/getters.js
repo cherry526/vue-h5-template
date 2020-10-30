@@ -13,15 +13,7 @@ const getters = {
   locationCity: state => state.index.locationCity,
   oneLocationCity: state => state.index.oneLocationCity,
   locationInfo: state => state.index.locationInfo,
-  vipCardInfo: state => state.index.vipCardInfo,
-  getFreeBag: state => state.index.getFreeBag,
-  moduleList: state => state.index.moduleList,
   updatePage: state => state.index.updatePage,
   cachedViews: state => state.index.cachedViews,
-
-
-  active: state => state.active.active,
-  updateGift: state => state.active.updateGift,
-  updateFlag: state => state.active.updateFlag,
 }
 export default getters

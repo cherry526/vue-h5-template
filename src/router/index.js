@@ -4,11 +4,10 @@
  * @Autor: cherry
  * @Date: 2020-06-04 14:15:58
  * @LastEditors: cherry
- * @LastEditTime: 2020-09-28 16:52:42
+ * @LastEditTime: 2020-10-30 12:19:21
  */ 
 import Vue from "vue";
 import VueRouter from "vue-router";
-import tabLayout from '@components/layoutManage/tabLayout'
 import baseLayout from '@components/layoutManage/baseLayout'
 import Pages from './page'
 // 解决路由异常报错问题
@@ -45,34 +44,6 @@ const routes = [
         },
       ]
     },
-    {
-      path: '/index',
-      component: tabLayout,
-      children: [
-        {
-          path: '/index/home',
-          name: 'home',
-          desc: '首页',
-          componentName: 'home/home',
-          component: Pages.home,
-          meta:{
-            title:'潮级VIP',
-            keepAlive: true
-          }
-        },
-        {
-          path: '/index/center',
-          name: 'center',
-          desc: '个人中心',
-          component: Pages.center,
-          componentName: 'center/center',
-          meta:{
-            title:'个人中心',
-          }
-        }
-      ]
-    },
-
     {
       path: "/error",
       name: "error",

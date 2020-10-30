@@ -4,12 +4,11 @@
  * @Autor: cherry
  * @Date: 2020-06-11 09:40:23
  * @LastEditors: cherry
- * @LastEditTime: 2020-07-30 16:19:38
+ * @LastEditTime: 2020-10-30 12:17:08
  */ 
 import Vue from 'vue'
 import Vuex from 'vuex'
 import getters from './getters'
-// import index from './modules/index'
 
 // 动态引入模块js
 const context = require.context('./modules', false, /\.js$/);
@@ -28,7 +27,6 @@ const store = new Vuex.Store({
   modules: {
     ...moduleStores
   },
-  // ...index,
   getters
 })
 

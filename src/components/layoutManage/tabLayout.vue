@@ -3,8 +3,8 @@
  * @Version: 1.0
  * @Autor: cherry
  * @Date: 2020-07-09 17:49:19
- * @LastEditors: yesong
- * @LastEditTime: 2020-08-08 15:06:06
+ * @LastEditors: cherry
+ * @LastEditTime: 2020-10-30 12:20:36
 --> 
 <template>
   <div>
@@ -34,24 +34,24 @@
       return {
         active: 0,
         tabList: [
-          { 
-            title: '优惠特卖',
-            active: 'http://doyd.oss-cn-shenzhen.aliyuncs.com/vip_h5/tab_sale_selct.png',
-            normal: 'http://doyd.oss-cn-shenzhen.aliyuncs.com/vip_h5/tab_sale.png',
-            path: '/index/home'
-          },
-          { 
-            title: '会员中心',
-            active: 'http://doyd.oss-cn-shenzhen.aliyuncs.com/vip_h5/tab_my_selct.png',
-            normal: 'http://doyd.oss-cn-shenzhen.aliyuncs.com/vip_h5/tab_my.png',
-            path: '/index/center'
-          }
+          // { 
+          //   title: '优惠特卖',
+          //   active: 'http://doyd.oss-cn-shenzhen.aliyuncs.com/vip_h5/tab_sale_selct.png',
+          //   normal: 'http://doyd.oss-cn-shenzhen.aliyuncs.com/vip_h5/tab_sale.png',
+          //   path: '/index/home'
+          // },
+          // { 
+          //   title: '会员中心',
+          //   active: 'http://doyd.oss-cn-shenzhen.aliyuncs.com/vip_h5/tab_my_selct.png',
+          //   normal: 'http://doyd.oss-cn-shenzhen.aliyuncs.com/vip_h5/tab_my.png',
+          //   path: '/index/center'
+          // }
         ],
       }
     },
     watch: { //监听路由变化
       $route(to, from) {
-        this.active = this.$route.path === '/index/home' ? 0 : 1
+        // this.active = this.$route.path === '/index/home' ? 0 : 1
       }
     },
     mounted() {

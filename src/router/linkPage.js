@@ -4,7 +4,7 @@
  * @Autor: cherry
  * @Date: 2020-07-27 16:31:55
  * @LastEditors: cherry
- * @LastEditTime: 2020-08-11 16:05:26
+ * @LastEditTime: 2020-10-30 12:13:49
  */ 
 import App from "../main.js"
 import { Dialog, Toast} from 'vant'
@@ -20,18 +20,7 @@ export default class linkPage {
    * @author: cherry
    */
   static pageMap =  new Map([
-    [ ['首页', 'APP_INDEX', 'PAGE_INDEX', 'SPECIAL_SELL_LIST'], 'home'],
-    [ ['大礼包', 'ACT_GIFT_PACKAGE', 'BANNER_OUTSIDE_BIG_GIFT_PAGE'], 'giftBag'],
-    [ ['特卖', 'ACT_SPECIAL_OFFER', 'BANNER_SPECIAL_SELL_PAGE', 'BANNER_SELF_TRAVEL_SPECIAL_ACT'], 'specialSale'],
-    [ ['特卖活动成功页', 'ACT_SUCCESS'], 'specialSaleSuccess'],
-    [ ['会员中心', 'VIP_CENTER'], 'center'],
-    [ ['会员权益', 'VIP_EQUITY', 'RECHARGE_VIP'], 'joinVip'],
-    [ ['卡券详情', 'CARD_DETAIL'], 'couponDetail'],
-    [ ['自我游卡券详情', 'TRAVEL_CARD_DETAIL'], 'travelCardDetails'],
-    [ ['卡券列表', 'CARD_LIST'], 'couponList'],
-    [ ['订单详情', 'ACT_ORDER_DETAIL'], 'orderDetail'],
-    // [ ['拼团', 'ACT_ASSEMBLE', 'ACT_ASSEMBLE_QRCODE], 'spellGroup'],
-    // [ ['拼团结果页', 'ASSEMBLE_JOIN_INFO'], 'spellGroupResult'],
+    // [ ['首页', 'APP_INDEX', 'PAGE_INDEX', 'SPECIAL_SELL_LIST'], 'home'],
   ])
   // 跳转页面方法
   static jumpPage = (name, query = {}, fn) => {
@@ -64,9 +53,5 @@ export default class linkPage {
       }, 300)
     }
   }
-  // // 首页
-  // static jumpIndex = (query) => {
-  //   this.jumpPage('home', query)
-  // }
 }
 

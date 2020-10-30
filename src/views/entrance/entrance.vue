@@ -4,11 +4,11 @@
  * @Autor: cherry
  * @Date: 2020-07-16 14:41:45
  * @LastEditors: cherry
- * @LastEditTime: 2020-08-05 10:02:03
+ * @LastEditTime: 2020-10-30 12:21:41
 --> 
 <template>
   <div>
-
+   入口
   </div>
 </template>
 <script>
@@ -33,7 +33,6 @@
       }
     },
     mounted() {
-      this.initPage()
     },
     created() {
     }

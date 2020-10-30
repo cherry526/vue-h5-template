@@ -55,64 +55,25 @@ export default {
     ]),
     ...mapMutations('index', [
       'SET_WXUSER',
-      'SET_VIPCARDINFO',
       'ADD_CACHED_VIEWS'
     ]),
-    // 初始化微信
-    getWxInit() {
-      // 处理路由token
-      let lasturl
-      if(window.$mode === 'hash') {
-        lasturl = utils.delData()
-      } else {
-        lasturl = utils.deleteUrlParams()
-      }
-      history.replaceState(null,null,lasturl)
-      console.log(lasturl, '==============lasturl', history)
-      setTimeout(() => {
-        getWXSign().then(wx => {
-          console.log(wx, '-----------wx')
-          window.$wx = wx
-        }).catch(res => {
-          console.log(res, '---------getWXSignError')
-        })
-      }, 500);
-    },
-    onCodeHandle() {
-      $eventBus.$on('handleCode', (res) => {
-        if(res === 9) { // 未授权
-          try {
-            this.$router.replace({
-              name: 'entrance'
-            })
-          } catch (error) {
-            console.err(error)
-          }
-        }
-      })
-    },
-    // 处理路由携带token直接跳转
+
+    // 处理路由
     tokenLink() {
       let queryData
       if(window.$mode === 'hash') {
         queryData = utils.getData()
+        history.replaceState(null,null,lasturl)
       } else {
         queryData = utils.formatUrlParams()
       }
       // console.log(queryData, '==000=====0000', window.location.href)
-      if(queryData && queryData.token && queryData.entrance === 'once') {
-        this.getWxInit()
+      if(queryData && queryData.token) {
         this.$save.set('session', 'token', queryData.token)
         this.$api.appInit().then(res => {
           // 处理入口逻辑
           if(res.state) {
-            let {vipCardInfo = {}, wxUser, target, param} = res.info
-            this.SET_WXUSER(wxUser)
-            this.SET_VIPCARDINFO(vipCardInfo)
-            // 储存会员卡信息
-            if (vipCardInfo.onceVip && !vipCardInfo.vipUser) {
-              vipCardInfo.isExpiration = true
-            }
+
           }        
         })
       }
@@ -121,12 +82,9 @@ export default {
   created() {
   },
   mounted() {
-    this.onCodeHandle()
-    console.log('app------mounted', this.$route, window.location,  '---------现在的路由')
-    if(!this.$save.get('session', 'token')) {
-      this.setLocationCityInfo()
-      // this.tokenLink()
-    }
+    // if(!this.$save.get('session', 'token')) {
+    //   this.setLocationCityInfo()
+    // }
   },
   destroyed() {
 

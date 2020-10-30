@@ -3,7 +3,7 @@
  * @Version: 1.0
  * @Autor: cherry
  * @Date: 2020-06-04 14:44:03
- * @LastEditTime: 2020-08-20 10:59:46
+ * @LastEditTime: 2020-10-30 12:23:53
  */ 
 // 开启Gzip压缩
 const CompressionPlugin = require('compression-webpack-plugin')
@@ -20,8 +20,7 @@ const IS_PROD = process.env.NODE_ENV !== 'development'
 const webpack = require('webpack')
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'development' ? '/' : '/vip_inline_h5',
-  // publicPath: './',
+  publicPath: './',
   lintOnSave: false, // 关闭eslint
   assetsDir: 'static',
   outputDir: "dist",
@@ -178,8 +177,8 @@ module.exports = {
       // }
       config.performance = {
         hints: 'warning', 
-        maxAssetSize: 300000, // 整数类型（以字节为单位）
-        maxEntrypointSize: 500000, // 整数类型（以字节为单位）
+        maxAssetSize: 30000000, // 整数类型（以字节为单位）
+        maxEntrypointSize: 50000000, // 整数类型（以字节为单位）
         assetFilter: function(assetFilename) {
           return assetFilename.endsWith('.css') || assetFilename.endsWith('.js');
         }
